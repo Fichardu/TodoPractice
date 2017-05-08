@@ -1,19 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fichardu.todo.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_centerHorizontal="true"
+        android:text="todos"
+        android:textColor="@color/colorPrimary"
+        android:textSize="64dp"
+        android:alpha="0.15"
+        android:layout_marginTop="60dp"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/content_bg"
+        android:layout_below="@id/title"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:id="@+id/mail_add_todo_btn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/down_arrow"
+                android:scaleType="center"
+                />
+
+            <EditText
+                android:id="@+id/main_new_todo_edit"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center_vertical"
+                android:hint="What needs to be done?"
+                android:textColorHint="#e6e6e6"
+                android:textSize="20sp"
+                />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_todo_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <RelativeLayout
+            android:id="@+id/main_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            >
+
+            <TextView
+                android:id="@+id/mail_summary_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_second"
+                tools:text="1 item left"
+                android:layout_centerVertical="true"
+                />
+
+            <LinearLayout
+                android:id="@+id/mail_bottom_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerInParent="true"
+                >
+
+                <TextView
+                    android:id="@+id/mail_category_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="All"
+                    android:textColor="@color/text_second"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textSize="12sp"
+                    android:background="@drawable/category_text_bg"
+                    />
+
+
+                <TextView
+                    android:id="@+id/mail_category_active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Active"
+                    android:textColor="@color/text_second"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textSize="12sp"
+                    android:background="@drawable/category_text_bg"
+                    />
+
+                <TextView
+                    android:id="@+id/mail_category_completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Completed"
+                    android:textColor="@color/text_second"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textSize="12sp"
+                    android:background="@drawable/category_text_bg"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
