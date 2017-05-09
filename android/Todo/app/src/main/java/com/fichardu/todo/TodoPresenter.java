@@ -36,9 +36,8 @@ public class TodoPresenter implements TodoContract.Presenter {
             todoVOs.put(item.getId(), vo);
         }
 
-        if (view != null) {
-            showTodos();
-        }
+        showTodos();
+        refreshSummary();
     }
 
     @Override
@@ -50,6 +49,7 @@ public class TodoPresenter implements TodoContract.Presenter {
         todoVOs.put(todoItemVO.getId(), todoItemVO);
 
         showTodos();
+        refreshSummary();
     }
 
     @Override
@@ -58,6 +58,7 @@ public class TodoPresenter implements TodoContract.Presenter {
         todoVOs.get(todoId).setCompleted(true);
 
         showTodos();
+        refreshSummary();
     }
 
     @Override
@@ -66,6 +67,7 @@ public class TodoPresenter implements TodoContract.Presenter {
         todoVOs.get(todoId).setCompleted(false);
 
         showTodos();
+        refreshSummary();
     }
 
     @Override
@@ -74,6 +76,7 @@ public class TodoPresenter implements TodoContract.Presenter {
         todoVOs.remove(todoId);
 
         showTodos();
+        refreshSummary();
     }
 
     @Override
@@ -119,6 +122,18 @@ public class TodoPresenter implements TodoContract.Presenter {
                 }
                 view.showTodos(todos);
             }
+        }
+    }
+
+    private void refreshSummary() {
+        if (view != null) {
+            int leftCount = 0;
+            for (TodoItemVO vo : todoVOs.values()) {
+                if (!vo.isCompleted()) {
+                    ++leftCount;
+                }
+            }
+            view.refreshSummary(leftCount);
         }
     }
 }

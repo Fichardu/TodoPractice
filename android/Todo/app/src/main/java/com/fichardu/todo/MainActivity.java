@@ -15,6 +15,7 @@ import com.fichardu.todo.data.TodoRepository;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements TodoContract.View {
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements TodoContract.View
                 String content = addTodoEdit.getText().toString();
                 if (!TextUtils.isEmpty(content)) {
                     presenter.addTodo(content);
+                    addTodoEdit.setText("");
                 }
             }
         });
@@ -125,5 +127,14 @@ public class MainActivity extends AppCompatActivity implements TodoContract.View
         allBtn.setSelected(type == TodoFilterType.ALL);
         activeBtn.setSelected(type == TodoFilterType.ACTIVE);
         completedBtn.setSelected(type == TodoFilterType.COMPLETED);
+    }
+
+    @Override
+    public void refreshSummary(int leftCount) {
+        if (leftCount > 1) {
+            summaryText.setText(String.format(Locale.CHINA, "%d items left", leftCount));
+        } else {
+            summaryText.setText(String.format(Locale.CHINA, "%d item left", leftCount));
+        }
     }
 }

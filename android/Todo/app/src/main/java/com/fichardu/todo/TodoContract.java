@@ -30,6 +30,8 @@ public interface TodoContract {
 
         void switchFilterState();
 
+        void refreshSummary(int leftCount);
+
         void showTodos(List<TodoItemVO> todos);
 
         void showNoTodo();

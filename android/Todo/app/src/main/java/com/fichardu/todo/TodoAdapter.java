@@ -1,6 +1,9 @@
 package com.fichardu.todo;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +73,12 @@ public class TodoAdapter extends RecyclerView.Adapter {
         }
 
         public void bindView(TodoItemVO model) {
-            contentText.setText(model.getContent());
+            SpannableString span = new SpannableString(model.getContent());
+            if (model.isCompleted()) {
+                span.setSpan(new StrikethroughSpan(), 0, span.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+
+            }
+            contentText.setText(span);
             stateView.setSelected(model.isCompleted());
             todoId = model.getId();
         }
